@@ -13,7 +13,7 @@ public class Serverconfig {
         Properties prop = new Properties();
         try (InputStream input = new FileInputStream(CONFIG_FILE)) {
             prop.load(input);
-            host = prop.getProperty("host", DEFAULT_HOST);
+            host = prop.getProperty("host", DEFAULT_HOST); // If there is no host, DEFAULT_HOST is host. 
             port = Integer.parseInt(prop.getProperty("port", String.valueOf(DEFAULT_PORT)));
         } catch (IOException ex) {
             host = DEFAULT_HOST;

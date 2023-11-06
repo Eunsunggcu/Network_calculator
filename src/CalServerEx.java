@@ -13,11 +13,13 @@ public class CalServerEx {
         if (st.countTokens() >= 3)
             {
                 res = "error - There's a lot of operands";
+                // ERR_TooManyOP
                 return res;
             }
         else if (st.countTokens() < 3)
         {
             res = "error - There's fewer operands.";
+            // ERR_TooFewerOP
             return res;
         }
         ///String res = "";
@@ -37,6 +39,7 @@ public class CalServerEx {
             case "/":
                 if (op2 == 0) {
                     res = "error - Divided by 0";
+                    // ERR_DividedBy0
                     break;
                 }
                 else {
@@ -46,6 +49,7 @@ public class CalServerEx {
 
             default:
                 res = "error - Please write proper operator";
+                // ERR_NotProperOP
         }
         return res;
     }
@@ -57,7 +61,7 @@ public class CalServerEx {
         try {
             Serverconfig config = new Serverconfig();
             listener = new ServerSocket(config.getPort());
-            System.out.println("연결을 기다리고 있습니다....");
+            System.out.println("Waiting for Connect....");
 
             while (true) {
                 Socket socket = listener.accept();
@@ -71,7 +75,7 @@ public class CalServerEx {
                 if (listener != null)
                     listener.close();
             } catch (IOException e) {
-                System.out.println("서버 종료 중 오류 발생");
+                System.out.println("Error shutting down server");
             }
             executorService.shutdown();
         }
@@ -86,7 +90,7 @@ public class CalServerEx {
 
         @Override
         public void run() {
-            System.out.println("연결 되었습니다.");
+            System.out.println("You are connected..");
 
             try (BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
                  BufferedWriter out = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream()))) {
@@ -94,7 +98,7 @@ public class CalServerEx {
 
                 while ((inputMessage = in.readLine()) != null) {
                     if ("bye".equalsIgnoreCase(inputMessage)) {
-                        System.out.println("클라이언트에서 연결을 종료하였음");
+                        System.out.println("Client terminated the connection");
                         break;
                     }
                     System.out.println(inputMessage);
@@ -103,12 +107,12 @@ public class CalServerEx {
                     out.flush();
                 }
             } catch (IOException e) {
-                System.out.println("클라이언트와 채팅 중 오류 발생: " + e.getMessage());
+                System.out.println("Error chatting with client: " + e.getMessage());
             } finally {
                 try {
                     socket.close();
                 } catch (IOException e) {
-                    System.out.println("소켓을 닫는 중 오류 발생: " + e.getMessage());
+                    System.out.println("Error closing socket: " + e.getMessage());
                 }
             }
         }

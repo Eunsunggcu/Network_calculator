@@ -9,20 +9,20 @@ public class CalClientEx {
              BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
              BufferedWriter out = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream()))) {
 
-            System.out.println("서버에 연결되었습니다. 계산식을 입력하세요 (예: 2 + 2)");
+            System.out.println("Connected to the server. Enter a calculation formula (e.g. 2 + 2)");
 
             String userInput;
             while ((userInput = consoleReader.readLine()) != null && !userInput.equalsIgnoreCase("bye")) {
                 out.write(userInput + "\n");
                 out.flush();
                 String response = in.readLine();
-                System.out.println("서버의 응답: " + response);
+                System.out.println("Response of Server: " + response);
             }
 
         } catch (UnknownHostException e) {
-            System.err.println("호스트를 찾을 수 없습니다: " + config.getHost());
+            System.err.println("Host not found: " + config.getHost());
         } catch (IOException e) {
-            System.err.println("I/O 에러: " + e.getMessage());
+            System.err.println("I/O Error: " + e.getMessage());
         }
     }
 }
