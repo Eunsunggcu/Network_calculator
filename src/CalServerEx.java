@@ -7,53 +7,6 @@ public class CalServerEx {
 
     private static final int THREAD_POOL_SIZE = 10;
 
-    // public static String calc(String exp) {
-    //     StringTokenizer st = new StringTokenizer(exp, " ");
-    //     String res = " ";
-    //     if (st.countTokens() > 3)
-    //         {
-    //             // res = "error - There's a lot of operands";
-    //             res = "ERR_001";
-    //             return res;
-    //         }
-    //     else if (st.countTokens() < 3)
-    //     {
-    //         // res = "error - There's fewer operands.";
-    //         res = "ERR_002";
-    //         return res;
-    //     }
-    //     ///String res = "";
-    //     int op1 = Integer.parseInt(st.nextToken());
-    //     String opcode = st.nextToken();
-    //     int op2 = Integer.parseInt(st.nextToken());
-    //     switch (opcode) {
-    //         case "+":
-    //             res = Integer.toString(op1 + op2);
-    //             break;
-    //         case "-":
-    //             res = Integer.toString(op1 - op2);
-    //             break;
-    //         case "*":
-    //             res = Integer.toString(op1 * op2);
-    //             break;
-    //         case "/":
-    //             if (op2 == 0) {
-    //                 // res = "error - Divided by 0";
-    //                 res = "ERR_003";
-    //                 break;
-    //             }
-    //             else {
-    //             res = Integer.toString(op1 / op2);
-    //             break;
-    //             }
-
-    //         default:
-    //             // res = "error - Please write proper operator";
-    //             res = "ERR_004";
-
-    //     }
-    //     return res;
-    // }
     public static String calc(String exp) {
         StringTokenizer st = new StringTokenizer(exp, " ");
         if (st.countTokens() != 3) {
