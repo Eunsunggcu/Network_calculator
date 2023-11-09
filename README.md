@@ -26,7 +26,7 @@ Ex: ERR_001 : It means this protocol is error protocol.
 -	ERR_004 : Error: Unknown operator.
 
 
-2.	Answer procol
+2.	Answer protocol
 -	ANS_000 : This protocol means that the result is zero
 
 
