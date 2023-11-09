@@ -7,52 +7,84 @@ public class CalServerEx {
 
     private static final int THREAD_POOL_SIZE = 10;
 
+    // public static String calc(String exp) {
+    //     StringTokenizer st = new StringTokenizer(exp, " ");
+    //     String res = " ";
+    //     if (st.countTokens() > 3)
+    //         {
+    //             // res = "error - There's a lot of operands";
+    //             res = "ERR_001";
+    //             return res;
+    //         }
+    //     else if (st.countTokens() < 3)
+    //     {
+    //         // res = "error - There's fewer operands.";
+    //         res = "ERR_002";
+    //         return res;
+    //     }
+    //     ///String res = "";
+    //     int op1 = Integer.parseInt(st.nextToken());
+    //     String opcode = st.nextToken();
+    //     int op2 = Integer.parseInt(st.nextToken());
+    //     switch (opcode) {
+    //         case "+":
+    //             res = Integer.toString(op1 + op2);
+    //             break;
+    //         case "-":
+    //             res = Integer.toString(op1 - op2);
+    //             break;
+    //         case "*":
+    //             res = Integer.toString(op1 * op2);
+    //             break;
+    //         case "/":
+    //             if (op2 == 0) {
+    //                 // res = "error - Divided by 0";
+    //                 res = "ERR_003";
+    //                 break;
+    //             }
+    //             else {
+    //             res = Integer.toString(op1 / op2);
+    //             break;
+    //             }
+
+    //         default:
+    //             // res = "error - Please write proper operator";
+    //             res = "ERR_004";
+
+    //     }
+    //     return res;
+    // }
     public static String calc(String exp) {
         StringTokenizer st = new StringTokenizer(exp, " ");
-        String res = " ";
-        if (st.countTokens() >= 3)
-            {
-                res = "error - There's a lot of operands";
-                // ERR_TooManyOP
-                return res;
-            }
-        else if (st.countTokens() < 3)
-        {
-            res = "error - There's fewer operands.";
-            // ERR_TooFewerOP
-            return res;
+        if (st.countTokens() != 3) {
+            return st.countTokens() > 3 ? "ERR_001" : "ERR_002";
         }
-        ///String res = "";
         int op1 = Integer.parseInt(st.nextToken());
         String opcode = st.nextToken();
         int op2 = Integer.parseInt(st.nextToken());
+        String result;
         switch (opcode) {
             case "+":
-                res = Integer.toString(op1 + op2);
-                break;
+                result = Integer.toString(op1 + op2);
+                return "ANS_" + result;
             case "-":
-                res = Integer.toString(op1 - op2);
-                break;
+                result = Integer.toString(op1 - op2);
+                return "ANS_" + result;
             case "*":
-                res = Integer.toString(op1 * op2);
-                break;
+                result = Integer.toString(op1 * op2);
+                return "ANS_" + result;
             case "/":
                 if (op2 == 0) {
-                    res = "error - Divided by 0";
-                    // ERR_DividedBy0
-                    break;
+                    return "ERR_003";
+                } else {
+                    result = Integer.toString(op1 / op2);
+                    return "ANS_" + result;
                 }
-                else {
-                res = Integer.toString(op1 / op2);
-                break;
-                }
-
             default:
-                res = "error - Please write proper operator";
-                // ERR_NotProperOP
+                return "ERR_004";
         }
-        return res;
     }
+    
 
     public static void main(String[] args) {
         ExecutorService executorService = Executors.newFixedThreadPool(THREAD_POOL_SIZE);
